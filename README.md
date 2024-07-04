@@ -65,8 +65,4 @@ bash
 Copiar código
 java banco.Main
 Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests para melhorias e correções.
-
-Licença
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para obter mais informações.
 
