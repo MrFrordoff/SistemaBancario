@@ -1,31 +1,26 @@
 package banco;
 
-public class Loja {
-    private String nome;
-    private Conta conta;
-    private Funcionario[] funcionarios;
+public class Funcionario extends Thread {
+    private Conta contaSalario;
+    private Conta contaInvestimento;
 
-    public Loja(String nome, Funcionario[] funcionarios) {
-        this.nome = nome;
-        this.conta = new Conta(nome, 0);
-        this.funcionarios = funcionarios;
+    public Funcionario(String nome, Conta contaSalario, Conta contaInvestimento) {
+        super(nome);
+        this.contaSalario = contaSalario;
+        this.contaInvestimento = contaInvestimento;
     }
 
-    public synchronized void receberPagamento(double valor) {
-        conta.depositar(valor);
-        for (Funcionario funcionario : funcionarios) {
-            if (conta.getSaldo() >= 1400) {
-                conta.sacar(1400);
-                funcionario.receberSalario(1400);
-            }
-        }
+    public void receberSalario(double valor) {
+        contaSalario.depositar(valor);
+        double investimento = valor * 0.2;
+        contaInvestimento.depositar(investimento);
     }
 
-    public Conta getConta() {
-        return conta;
+    @Override
+    public void run() {
     }
 
-    public String getNome() {
-        return nome;
+    public Conta getContaSalario() {
+        return contaSalario;
     }
 }
